@@ -79,10 +79,12 @@ class HandEvaluator
     count_by_value(cards).any? { |_, count| count == 2 }
   end
 
+  # TODO: how does Four Fingers work?
   def flush?(cards)
     cards.map { |c| c.suit }.uniq.count == 1
   end
 
+  # TODO: how does Four Fingers	and Shortcut work?
   def straight?(cards)
     card_indexes = cards.map { |c| card_value_to_index(c) }.sort
 
