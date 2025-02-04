@@ -25,13 +25,13 @@ class HandEvaluator
   HAND_DEFINITIONS = {
     royal_flush: 0,
     straight_flush: 1,
-    # four_of_a_kind: 2,
+    four_of_a_kind: 2,
     # full_house: 3,
     flush: 4,
     straight: 5,
-    # three_of_a_kind: 6,
+    three_of_a_kind: 6,
     # two_pair: 7,
-    # pair: 8,
+    pair: 8,
     # high_card: 9
   }
 
@@ -77,6 +77,18 @@ class HandEvaluator
     flush?(cards) && straight?(cards)
   end
 
+  def four_of_a_kind?(cards)
+    count_by_value(cards).any? { |_, count| count == 4 }
+  end
+
+  def three_of_a_kind?(cards)
+    count_by_value(cards).any? { |_, count| count == 3 }
+  end
+
+  def pair?(cards)
+    count_by_value(cards).any? { |_, count| count == 2 }
+  end
+
   def flush?(cards)
     cards.map { |c| c.suit }.uniq.count == 1
   end
@@ -94,6 +106,10 @@ class HandEvaluator
     end
 
     false
+  end
+
+  def count_by_value(cards)
+    cards.group_by { |c| c.value }.transform_values(&:count)
   end
 
   def consecutive?(indexes)

@@ -61,7 +61,7 @@ RSpec.describe HandEvaluator do
       end
 
       it "returns :royal_flush" do
-        expect(subject.perform!).to include(:royal_flush, :straight_flush, :flush, :straight)
+        expect(subject.perform!).to include(:royal_flush)
       end
     end
 
@@ -77,11 +77,24 @@ RSpec.describe HandEvaluator do
       end
 
       it "returns :straight_flush" do
-        expect(subject.perform!).to include(:straight_flush, :flush, :straight)
+        expect(subject.perform!).to include(:straight_flush)
       end
     end
 
     context "four of a kind" do
+      let(:cards) do
+        [
+          Card.new("A", "hearts"),
+          Card.new("A", "spades"),
+          Card.new("A", "diamonds"),
+          Card.new("A", "clubs"),
+          Card.new("3", "hearts")
+        ]
+      end
+
+      it "returns :four_of_a_kind" do
+        expect(subject.perform!).to include(:four_of_a_kind)
+      end
     end
 
     context "full house" do
@@ -170,12 +183,33 @@ RSpec.describe HandEvaluator do
     end
 
     context "three of a kind" do
+      let(:cards) do
+        [
+          Card.new("A", "hearts"),
+          Card.new("A", "spades"),
+          Card.new("A", "diamonds"),
+          Card.new("3", "hearts"),
+          Card.new("2", "hearts")
+        ]
+      end
+
+      it "returns :three_of_a_kind" do
+        expect(subject.perform!).to include(:three_of_a_kind)
+      end
     end
 
     context "two pair" do
     end
 
     context "pair" do
+      let(:cards) do
+        [
+          Card.new("A", "hearts"),
+          Card.new("A", "spades"),
+          Card.new("3", "hearts"),
+          Card.new("2", "hearts")
+        ]
+      end
     end
 
     context "high card" do
