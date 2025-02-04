@@ -21,18 +21,19 @@ class Card
 end
 
 class HandEvaluator
+  # TODO: fancy balatro hands i.e. five of a kind, flush house, flush five
   # do we need the index? conver to an enum?
   HAND_DEFINITIONS = {
     royal_flush: 0,
     straight_flush: 1,
     four_of_a_kind: 2,
-    # full_house: 3,
+    full_house: 3,
     flush: 4,
     straight: 5,
     three_of_a_kind: 6,
-    # two_pair: 7,
+    two_pair: 7,
     pair: 8,
-    # high_card: 9
+    high_card: 9
   }
 
   CARD_VALUE_INDEX = {
@@ -81,8 +82,19 @@ class HandEvaluator
     count_by_value(cards).any? { |_, count| count == 4 }
   end
 
+  def full_house?(cards)
+    count_by_value(cards).any? { |_, count| count == 3 } &&
+      count_by_value(cards).any? { |_, count| count == 2 }
+  end
+
   def three_of_a_kind?(cards)
     count_by_value(cards).any? { |_, count| count == 3 }
+  end
+
+  def two_pair?(cards)
+    count_by_value(cards)
+      .select { |_, count| count >=2 }
+      .count == 2
   end
 
   def pair?(cards)
@@ -106,6 +118,10 @@ class HandEvaluator
     end
 
     false
+  end
+
+  def high_card?(cards)
+    true
   end
 
   def count_by_value(cards)

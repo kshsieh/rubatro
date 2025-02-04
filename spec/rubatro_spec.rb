@@ -23,7 +23,6 @@ RSpec.describe Hand do
     let(:expected_hands) { [:full_house, :three_of_a_kind, :two_pair, :pair, :high_card]}
 
     it "returns all possible hands in order of highest to lowest" do
-      pending
       hand = Hand.new(cards)
       expect(hand.possible_hands).to eq(expected_hands)
     end
@@ -98,6 +97,19 @@ RSpec.describe HandEvaluator do
     end
 
     context "full house" do
+      let(:cards) do
+        [
+          Card.new("A", "hearts"),
+          Card.new("A", "spades"),
+          Card.new("A", "diamonds"),
+          Card.new("3", "hearts"),
+          Card.new("3", "spades")
+        ]
+      end
+
+      it "returns :full_house" do
+        expect(subject.perform!).to include(:full_house)
+      end
     end
 
     context "flush" do
@@ -199,6 +211,19 @@ RSpec.describe HandEvaluator do
     end
 
     context "two pair" do
+      let(:cards) do
+        [
+          Card.new("A", "hearts"),
+          Card.new("A", "spades"),
+          Card.new("3", "hearts"),
+          Card.new("3", "spades"),
+          Card.new("2", "hearts")
+        ]
+      end
+
+      it "returns :two_pair" do
+        expect(subject.perform!).to include(:two_pair)
+      end
     end
 
     context "pair" do
@@ -210,9 +235,26 @@ RSpec.describe HandEvaluator do
           Card.new("2", "hearts")
         ]
       end
+
+      it "returns :pair" do
+        expect(subject.perform!).to include(:pair)
+      end
     end
 
     context "high card" do
+      let(:cards) do
+        [
+          Card.new("A", "hearts"),
+          Card.new("K", "spades"),
+          Card.new("J", "hearts"),
+          Card.new("Q", "diamonds"),
+          Card.new("10", "hearts")
+        ]
+      end
+
+      it "returns :high_card" do
+        expect(subject.perform!).to include(:high_card)
+      end
     end
   end
 end
