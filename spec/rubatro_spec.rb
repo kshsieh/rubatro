@@ -61,12 +61,24 @@ RSpec.describe HandEvaluator do
       end
 
       it "returns :royal_flush" do
-        pending
-        expect(subject.perform!).to include(:royal_flush)
+        expect(subject.perform!).to include(:royal_flush, :straight_flush, :flush, :straight)
       end
     end
 
     context "straight flush" do
+      let(:cards) do
+        [
+          Card.new("A", "hearts"),
+          Card.new("2", "hearts"),
+          Card.new("3", "hearts"),
+          Card.new("4", "hearts"),
+          Card.new("5", "hearts")
+        ]
+      end
+
+      it "returns :straight_flush" do
+        expect(subject.perform!).to include(:straight_flush, :flush, :straight)
+      end
     end
 
     context "four of a kind" do
@@ -108,14 +120,30 @@ RSpec.describe HandEvaluator do
         end
       end
 
-      context "straight with Ace" do
+      context "straight with Ace low" do
         let(:cards) do
           [
             Card.new("3", "hearts"),
             Card.new("A", "hearts"),
             Card.new("4", "diamonds"),
             Card.new("5", "hearts"),
-            Card.new("2", "spades")
+            Card.new("2", "spades"),
+          ]
+        end
+
+        it "returns :straight" do
+          expect(subject.perform!).to include(:straight)
+        end
+      end
+
+      context "straight with Ace high" do
+        let(:cards) do
+          [
+            Card.new("A", "hearts"),
+            Card.new("K", "spades"),
+            Card.new("J", "hearts"),
+            Card.new("Q", "diamonds"),
+            Card.new("10", "hearts"),
           ]
         end
 
