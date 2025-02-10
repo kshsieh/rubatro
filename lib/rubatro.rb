@@ -14,6 +14,32 @@ class Hand
   end
 end
 
+class HandType
+  attr_accessor :level
+  attr_reader :type
+
+  def initialize(type, level: 1)
+    @type = type.to_sym
+    @level = level
+  end
+
+  def chips
+    scaled_values(:chips)
+  end
+
+  def mult
+    scaled_values(:mult)
+  end
+
+  private
+
+  def scaled_values(value_type)
+    total = ::BASE_HAND_TYPES[type][:base][value_type]
+    total += ::BASE_HAND_TYPES[type][:scaling][value_type] * (level - 1) if level > 1
+    total
+  end
+end
+
 class HandCalculator
   attr_reader :hand
 

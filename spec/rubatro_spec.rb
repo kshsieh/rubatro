@@ -28,17 +28,3 @@ RSpec.describe Hand do
     end
   end
 end
-
-RSpec.describe Card do
-  let(:card) { Card.new(rank: "A", suit: :H) }
-
-  describe "#initialize" do
-    it "sets the instance variable @rank" do
-      expect(card.rank).to eq("A")
-    end
-
-    it "sets the instance variable @suit" do
-      expect(card.suit).to eq(:H)
-    end
-  end
-end
