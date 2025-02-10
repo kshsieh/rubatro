@@ -14,22 +14,6 @@ class HandEvaluator
     high_card: 9
   }
 
-  CARD_VALUE_INDEX = {
-    "A" => 14,
-    "K" => 13,
-    "Q" => 12,
-    "J" => 11,
-    "10" => 10,
-    "9" => 9,
-    "8" => 8,
-    "7" => 7,
-    "6" => 6,
-    "5" => 5,
-    "4" => 4,
-    "3" => 3,
-    "2" => 2
-  }
-
   attr_accessor :hand, :results
 
   def initialize(hand)
@@ -86,14 +70,14 @@ class HandEvaluator
 
   # TODO: how does Four Fingers	and Shortcut work?
   def straight?(cards)
-    card_indexes = cards.map { |c| card_value_to_index(c) }.sort
+    card_indexes = cards.map(&:index).sort
 
     # Check regular straight
     return :ace_high if consecutive?(card_indexes)
 
     # Check Ace-low straight (A,2,3,4,5)
-    if card_indexes.include?(14) # Has an Ace
-      ace_low_indexes = card_indexes.map { |i| i == 14 ? 1 : i }.sort
+    if card_indexes.include?(13) # Has an Ace
+      ace_low_indexes = card_indexes.map { |i| i == 13 ? 0 : i }.sort
       return :ace_low if consecutive?(ace_low_indexes)
     end
 
@@ -105,14 +89,10 @@ class HandEvaluator
   end
 
   def count_by_value(cards)
-    cards.group_by { |c| c.value }.transform_values(&:count)
+    cards.group_by { |c| c.rank }.transform_values(&:count)
   end
 
   def consecutive?(indexes)
     indexes.each_cons(2).all? { |a, b| b == a + 1 }
-  end
-
-  def card_value_to_index(card)
-    CARD_VALUE_INDEX[card.value]
   end
 end
