@@ -8,11 +8,11 @@ RSpec.describe HandEvaluator do
     context "royal flush" do
       let(:cards) do
         [
-          Card.new("A", :H),
-          Card.new("K", :H),
-          Card.new("Q", :H),
-          Card.new("J", :H),
-          Card.new("10", :H)
+          Card.new(rank: "A", suit: :H),
+          Card.new(rank: "K", suit: :H),
+          Card.new(rank: "Q", suit: :H),
+          Card.new(rank: "J", suit: :H),
+          Card.new(rank: "10", suit: :H)
         ]
       end
 
@@ -24,11 +24,11 @@ RSpec.describe HandEvaluator do
     context "straight flush" do
       let(:cards) do
         [
-          Card.new("A", :H),
-          Card.new("2", :H),
-          Card.new("3", :H),
-          Card.new("4", :H),
-          Card.new("5", :H)
+          Card.new(rank: "A", suit: :H),
+          Card.new(rank: "2", suit: :H),
+          Card.new(rank: "3", suit: :H),
+          Card.new(rank: "4", suit: :H),
+          Card.new(rank: "5", suit: :H)
         ]
       end
 
@@ -40,11 +40,11 @@ RSpec.describe HandEvaluator do
     context "four of a kind" do
       let(:cards) do
         [
-          Card.new("A", :H),
-          Card.new("A", :S),
-          Card.new("A", :D),
-          Card.new("A", :C),
-          Card.new("3", :H)
+          Card.new(rank: "A", suit: :H),
+          Card.new(rank: "A", suit: :S),
+          Card.new(rank: "A", suit: :D),
+          Card.new(rank: "A", suit: :C),
+          Card.new(rank: "3", suit: :H)
         ]
       end
 
@@ -56,11 +56,11 @@ RSpec.describe HandEvaluator do
     context "full house" do
       let(:cards) do
         [
-          Card.new("A", :H),
-          Card.new("A", :S),
-          Card.new("A", :D),
-          Card.new("3", :H),
-          Card.new("3", :S)
+          Card.new(rank: "A", suit: :H),
+          Card.new(rank: "A", suit: :S),
+          Card.new(rank: "A", suit: :D),
+          Card.new(rank: "3", suit: :H),
+          Card.new(rank: "3", suit: :S)
         ]
       end
 
@@ -72,11 +72,11 @@ RSpec.describe HandEvaluator do
     context "flush" do
       let(:cards) do
         [
-          Card.new("2", :H),
-          Card.new("3", :H),
-          Card.new("8", :H),
-          Card.new("J", :H),
-          Card.new("A", :H)
+          Card.new(rank: "2", suit: :H),
+          Card.new(rank: "3", suit: :H),
+          Card.new(rank: "8", suit: :H),
+          Card.new(rank: "J", suit: :H),
+          Card.new(rank: "A", suit: :H)
         ]
       end
 
@@ -89,11 +89,11 @@ RSpec.describe HandEvaluator do
       context "straight with numbered cards" do
         let(:cards) do
           [
-            Card.new("4", :C),
-            Card.new("3", :S),
-            Card.new("6", :S),
-            Card.new("5", :H),
-            Card.new("2", :H)
+            Card.new(rank: "4", suit: :C),
+            Card.new(rank: "3", suit: :S),
+            Card.new(rank: "6", suit: :S),
+            Card.new(rank: "5", suit: :H),
+            Card.new(rank: "2", suit: :H)
           ]
         end
 
@@ -105,11 +105,11 @@ RSpec.describe HandEvaluator do
       context "straight with Ace low" do
         let(:cards) do
           [
-            Card.new("3", :H),
-            Card.new("A", :H),
-            Card.new("4", :D),
-            Card.new("5", :H),
-            Card.new("2", :S)
+            Card.new(rank: "3", suit: :H),
+            Card.new(rank: "A", suit: :H),
+            Card.new(rank: "4", suit: :D),
+            Card.new(rank: "5", suit: :H),
+            Card.new(rank: "2", suit: :S)
           ]
         end
 
@@ -121,11 +121,11 @@ RSpec.describe HandEvaluator do
       context "straight with Ace high" do
         let(:cards) do
           [
-            Card.new("A", :H),
-            Card.new("K", :S),
-            Card.new("J", :H),
-            Card.new("Q", :D),
-            Card.new("10", :H)
+            Card.new(rank: "A", suit: :H),
+            Card.new(rank: "K", suit: :S),
+            Card.new(rank: "J", suit: :H),
+            Card.new(rank: "Q", suit: :D),
+            Card.new(rank: "10", suit: :H)
           ]
         end
 
@@ -137,11 +137,11 @@ RSpec.describe HandEvaluator do
       context "straight with Face Cards" do
         let(:cards) do
           [
-            Card.new("Q", :H),
-            Card.new("J", :S),
-            Card.new("10", :C),
-            Card.new("9", :H),
-            Card.new("8", :S)
+            Card.new(rank: "Q", suit: :H),
+            Card.new(rank: "J", suit: :S),
+            Card.new(rank: "10", suit: :C),
+            Card.new(rank: "9", suit: :H),
+            Card.new(rank: "8", suit: :S)
           ]
         end
 
@@ -154,11 +154,11 @@ RSpec.describe HandEvaluator do
     context "three of a kind" do
       let(:cards) do
         [
-          Card.new("A", :H),
-          Card.new("A", :S),
-          Card.new("A", :D),
-          Card.new("3", :H),
-          Card.new("2", :H)
+          Card.new(rank: "A", suit: :H),
+          Card.new(rank: "A", suit: :S),
+          Card.new(rank: "A", suit: :D),
+          Card.new(rank: "3", suit: :H),
+          Card.new(rank: "2", suit: :H)
         ]
       end
 
@@ -170,11 +170,11 @@ RSpec.describe HandEvaluator do
     context "two pair" do
       let(:cards) do
         [
-          Card.new("A", :H),
-          Card.new("A", :S),
-          Card.new("3", :H),
-          Card.new("3", :S),
-          Card.new("2", :H)
+          Card.new(rank: "A", suit: :H),
+          Card.new(rank: "A", suit: :S),
+          Card.new(rank: "3", suit: :H),
+          Card.new(rank: "3", suit: :S),
+          Card.new(rank: "2", suit: :H)
         ]
       end
 
@@ -186,10 +186,10 @@ RSpec.describe HandEvaluator do
     context "pair" do
       let(:cards) do
         [
-          Card.new("A", :H),
-          Card.new("A", :S),
-          Card.new("3", :H),
-          Card.new("2", :H)
+          Card.new(rank: "A", suit: :H),
+          Card.new(rank: "A", suit: :S),
+          Card.new(rank: "3", suit: :H),
+          Card.new(rank: "2", suit: :H)
         ]
       end
 
@@ -201,11 +201,11 @@ RSpec.describe HandEvaluator do
     context "high card" do
       let(:cards) do
         [
-          Card.new("A", :H),
-          Card.new("K", :S),
-          Card.new("J", :H),
-          Card.new("Q", :D),
-          Card.new("10", :H)
+          Card.new(rank: "A", suit: :H),
+          Card.new(rank: "K", suit: :S),
+          Card.new(rank: "J", suit: :H),
+          Card.new(rank: "Q", suit: :D),
+          Card.new(rank: "10", suit: :H)
         ]
       end
 

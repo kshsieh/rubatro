@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe Hand do
   describe "#initialize" do
-    let(:cards) { [Card.new("A", :H), Card.new("K", :S)] }
+    let(:cards) { [Card.new(rank: "A", suit: :H), Card.new(rank: "K", suit: :S)] }
 
     it "sets the instance variable @cards" do
       hand = Hand.new(cards)
@@ -13,11 +13,11 @@ RSpec.describe Hand do
   describe "#possible_hands" do
     let(:cards) do
       [
-        Card.new("A", :H),
-        Card.new("A", :S),
-        Card.new("A", :D),
-        Card.new("K", :H),
-        Card.new("K", :S)
+        Card.new(rank: "A", suit: :H),
+        Card.new(rank: "A", suit: :S),
+        Card.new(rank: "A", suit: :D),
+        Card.new(rank: "K", suit: :H),
+        Card.new(rank: "K", suit: :S)
       ]
     end
     let(:expected_hands) { [:full_house, :three_of_a_kind, :two_pair, :pair, :high_card]}
@@ -25,6 +25,20 @@ RSpec.describe Hand do
     it "returns all possible hands in order of highest to lowest" do
       hand = Hand.new(cards)
       expect(hand.possible_hands).to eq(expected_hands)
+    end
+  end
+end
+
+RSpec.describe Card do
+  let(:card) { Card.new(rank: "A", suit: :H) }
+
+  describe "#initialize" do
+    it "sets the instance variable @rank" do
+      expect(card.rank).to eq("A")
+    end
+
+    it "sets the instance variable @suit" do
+      expect(card.suit).to eq(:H)
     end
   end
 end

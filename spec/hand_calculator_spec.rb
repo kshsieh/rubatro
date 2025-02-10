@@ -7,8 +7,8 @@ RSpec.describe HandCalculator do
     context "base level hand" do
       let(:cards) do
       end
-      it "returns the correct score" do
 
+      it "returns the correct score" do
       end
     end
 
